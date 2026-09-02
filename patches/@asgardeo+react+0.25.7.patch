@@ -1,0 +1,117 @@
+diff --git a/node_modules/@asgardeo/react/dist/index.js b/node_modules/@asgardeo/react/dist/index.js
+index 033876a..f33d83f 100644
+--- a/node_modules/@asgardeo/react/dist/index.js
++++ b/node_modules/@asgardeo/react/dist/index.js
+@@ -10545,9 +10545,10 @@ var FormContainer = (props) => {
+       }
+     };
+     return /* @__PURE__ */ jsx76("form", { onSubmit: handleFormSubmit, style: { display: "flex", flexDirection: "column" }, children: component.components.map(
+-      (childComponent) => createSignUpComponent({
++      (childComponent, index) => createSignUpComponent({
+         ...props,
+-        component: childComponent
++        component: childComponent,
++        key: childComponent.id || index
+       })
+     ) }, component.id);
+   }
+@@ -10846,68 +10847,68 @@ var Typography_default2 = TypographyComponent;
+ 
+ // src/components/presentation/auth/SignUp/v1/SignUpOptionFactory.tsx
+ import { jsx as jsx80 } from "react/jsx-runtime";
+-var createSignUpComponent = ({ component, onSubmit, ...rest }) => {
++var createSignUpComponent = ({ component, onSubmit, key: reactKey, ...rest }) => {
+   switch (component.type) {
+     case EmbeddedFlowComponentType2.Typography:
+-      return /* @__PURE__ */ jsx80(Typography_default2, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(Typography_default2, { component, onSubmit, ...rest }, reactKey);
+     case EmbeddedFlowComponentType2.Input: {
+       const inputVariant = component.variant?.toUpperCase();
+       const inputType = component.config["type"]?.toLowerCase();
+       if (inputVariant === "EMAIL" || inputType === "email") {
+-        return /* @__PURE__ */ jsx80(EmailInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(EmailInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+       if (inputVariant === "PASSWORD" || inputType === "password") {
+-        return /* @__PURE__ */ jsx80(PasswordInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(PasswordInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+       if (inputVariant === "TELEPHONE" || inputType === "tel") {
+-        return /* @__PURE__ */ jsx80(TelephoneInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(TelephoneInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+       if (inputVariant === "NUMBER" || inputType === "number") {
+-        return /* @__PURE__ */ jsx80(NumberInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(NumberInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+       if (inputVariant === "DATE" || inputType === "date") {
+-        return /* @__PURE__ */ jsx80(DateInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(DateInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+       if (inputVariant === "CHECKBOX" || inputType === "checkbox") {
+-        return /* @__PURE__ */ jsx80(CheckboxInput_default, { component, onSubmit, ...rest });
++        return /* @__PURE__ */ jsx80(CheckboxInput_default, { component, onSubmit, ...rest }, reactKey);
+       }
+-      return /* @__PURE__ */ jsx80(TextInput_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(TextInput_default, { component, onSubmit, ...rest }, reactKey);
+     }
+     case EmbeddedFlowComponentType2.Button: {
+       const buttonVariant = component.variant?.toUpperCase();
+       const buttonText = component.config["text"] || component.config["label"] || "";
+       if (buttonVariant === "SOCIAL") {
+         if (buttonText.toLowerCase().includes("google")) {
+-          return /* @__PURE__ */ jsx80(GoogleButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(GoogleButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+         if (buttonText.toLowerCase().includes("github")) {
+-          return /* @__PURE__ */ jsx80(GitHubButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(GitHubButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+         if (buttonText.toLowerCase().includes("microsoft")) {
+-          return /* @__PURE__ */ jsx80(MicrosoftButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(MicrosoftButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+         if (buttonText.toLowerCase().includes("facebook")) {
+-          return /* @__PURE__ */ jsx80(FacebookButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(FacebookButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+         if (buttonText.toLowerCase().includes("linkedin")) {
+-          return /* @__PURE__ */ jsx80(LinkedInButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(LinkedInButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+         if (buttonText.toLowerCase().includes("ethereum")) {
+-          return /* @__PURE__ */ jsx80(SignInWithEthereumButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText });
++          return /* @__PURE__ */ jsx80(SignInWithEthereumButton_default, { onClick: () => onSubmit(component, {}), ...rest, children: buttonText }, reactKey);
+         }
+       }
+-      return /* @__PURE__ */ jsx80(SubmitButton_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(SubmitButton_default, { component, onSubmit, ...rest }, reactKey);
+     }
+     case EmbeddedFlowComponentType2.Form:
+-      return /* @__PURE__ */ jsx80(FormContainer_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(FormContainer_default, { component, onSubmit, ...rest }, reactKey);
+     case EmbeddedFlowComponentType2.Select:
+-      return /* @__PURE__ */ jsx80(SelectInput_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(SelectInput_default, { component, onSubmit, ...rest }, reactKey);
+     case EmbeddedFlowComponentType2.Divider:
+-      return /* @__PURE__ */ jsx80(DividerComponent_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(DividerComponent_default, { component, onSubmit, ...rest }, reactKey);
+     case EmbeddedFlowComponentType2.Image:
+-      return /* @__PURE__ */ jsx80(ImageComponent_default, { component, onSubmit, ...rest });
++      return /* @__PURE__ */ jsx80(ImageComponent_default, { component, onSubmit, ...rest }, reactKey);
+     default:
+-      return /* @__PURE__ */ jsx80("div", {});
++      return /* @__PURE__ */ jsx80("div", {}, reactKey);
+   }
+ };
+ var createSignUpOptionFromComponent = (component, formValues, touchedFields, formErrors, isLoading, isFormValid, onInputChange, options) => createSignUpComponent({
+@@ -11926,6 +11927,9 @@ var BaseSignUpContent2 = ({
+         inputs: filteredInputs
+       };
+       const rawResponse = await onSubmit(payload);
++      if (rawResponse === void 0) {
++        return;
++      }
+       const response = normalizeFlowResponseLocal(rawResponse);
+       onFlowChange?.(response);
+       await setChallengeToken(response.challengeToken ?? null);

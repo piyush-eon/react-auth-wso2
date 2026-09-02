@@ -1,0 +1,48 @@
+// AsgardeoProvider (server) wraps the client-side provider and reads
+// clientId/baseUrl/clientSecret from env vars automatically. Every route
+// can use useAsgardeo() (client) or the `asgardeo` server helper.
+//
+// afterSignInUrl is meant to redirect to /dashboard after sign-up; sign-in
+// currently still lands on the home page regardless (see notes article).
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { AsgardeoProvider } from "@asgardeo/nextjs/server";
+import { SiteHeader } from "./components/SiteHeader";
+import "./globals.css";
+
+// Every page needs a live session check, so nothing here can be
+// statically prerendered.
+export const dynamic = "force-dynamic";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "React Auth Demo",
+  description: "WSO2 Identity Platform app-native authentication, built with Next.js.",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <AsgardeoProvider afterSignInUrl="/dashboard">
+          <SiteHeader />
+          <main className="flex-1 w-full max-w-xl mx-auto px-6 py-14 flex flex-col gap-7">
+            {children}
+          </main>
+        </AsgardeoProvider>
+      </body>
+    </html>
+  );
+}
