@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 export default function Home() {
   return (
     <div className="flex flex-col items-center gap-4 pt-4 text-center">
-      <Badge variant="outline">WSO2 Identity Platform</Badge>
+      <Badge variant="outline">Like the video 😡👍</Badge>
       <h1 className="text-4xl font-semibold tracking-tight">React Auth Demo</h1>
       <p className="max-w-prose text-muted-foreground">Public home page.</p>
       <p className="max-w-prose text-muted-foreground">
