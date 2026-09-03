@@ -8,14 +8,19 @@ export default function Home() {
     <div className="flex flex-col items-center gap-4 pt-4 text-center">
       <Badge variant="outline">WSO2 Identity Platform</Badge>
       <h1 className="text-4xl font-semibold tracking-tight">React Auth Demo</h1>
+      <p className="max-w-prose text-muted-foreground">Public home page.</p>
       <p className="max-w-prose text-muted-foreground">
-        Public home page. Sign in above to reach <code>/dashboard</code>; sign
-        in as a user with the <code>admin</code> role (set up in the WSO2
-        console under User Management → Roles) to also reach{" "}
-        <code>/admin</code>.
+        Sign in to reach <code>/dashboard</code>; <br /> Sign in as a user with
+        the <code>admin</code> role to also reach <code>/admin</code>.
       </p>
       <p className="mt-1">
-        No account yet? <Link href="/sign-up" className="text-primary underline-offset-4 hover:underline">Sign up</Link>
+        No account yet?{" "}
+        <Link
+          href="/sign-up"
+          className="text-primary underline-offset-4 hover:underline"
+        >
+          Sign up
+        </Link>
       </p>
     </div>
   );

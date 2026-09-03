@@ -13,7 +13,7 @@ function deleteUser() {
   alert("Pretend a user just got deleted.");
 }
 
-// Attaches the real access token to a request to our Express backend.
+// Attaches the real access token to a request to our own API route.
 // The token comes from a server action (fetchAccessToken) since
 // app-native's server-managed session never exposes it to client code.
 function useProtectedFetch() {
@@ -35,16 +35,13 @@ function AdminStatsDemo() {
   const callAdminStats = async () => {
     setNetworkError(null);
     try {
-      // Requires the Express server in /server running on :3001.
-      const res = await protectedFetch("http://localhost:3001/api/admin/stats");
+      const res = await protectedFetch("/api/admin/stats");
       setStatus(res.status);
       setBody(await res.json().catch(() => null));
     } catch {
       setStatus(null);
       setBody(null);
-      setNetworkError(
-        "Couldn't reach the backend. Is the Express server in /server running on :3001?",
-      );
+      setNetworkError("Couldn't reach /api/admin/stats.");
     }
   };
 
@@ -61,8 +58,10 @@ function AdminStatsDemo() {
           </pre>
         )}
         <p className="text-sm text-muted-foreground">
-          Try this signed out (401), signed in as a non-admin (403), and signed
-          in as an admin (200) — three real responses, not just described.
+          Signed in as a non-admin, this returns 403. As an admin, 200. (401
+          only happens with no token at all — this page already requires
+          sign-in to load, so try that one with curl instead:{" "}
+          <code>curl -i {"{origin}"}/api/admin/stats</code>.)
         </p>
       </CardContent>
     </Card>
@@ -75,6 +74,9 @@ export default function Dashboard() {
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">Every signed-in user can see this page.</p>
+        <p className="text-sm text-muted-foreground">
+          Client-side checks are just UX — the real security boundary is the backend verifying the token on every request.
+        </p>
       </div>
 
       {/* Same "roles" check as RequireRole, applied inline instead of gating the whole page. */}
