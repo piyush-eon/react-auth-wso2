@@ -16,7 +16,11 @@ export default function SignUpPage() {
         Sign up in seconds — no redirects, no hosted pages.
       </p>
       <div className="w-full text-left">
-        <SignUp onComplete={(payload) => console.log(payload)} />
+        <SignUp
+          showTitle={false}
+          showSubtitle={false}
+          onComplete={(payload) => console.log(payload)}
+        />
       </div>
       <p className="text-sm text-muted-foreground">
         Already have an account?{" "}
