@@ -27,22 +27,13 @@ export function SiteHeader() {
 
       <SignedIn>
         <nav className="ml-auto flex items-center gap-1">
-          <Link
-            href="/dashboard"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
+          <Link href="/dashboard" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
             Dashboard
           </Link>
-          <Link
-            href="/profile"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
+          <Link href="/profile" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
             Profile
           </Link>
-          <Link
-            href="/admin"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
+          <Link href="/admin" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
             Admin
           </Link>
         </nav>
@@ -50,10 +41,7 @@ export function SiteHeader() {
       </SignedIn>
       <SignedOut>
         <nav className="ml-auto flex items-center gap-2">
-          <Link
-            href="/sign-in"
-            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
+          <Link href="/sign-in" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
             Sign In
           </Link>
           <Link href="/sign-up" className={cn(buttonVariants({ size: "sm" }))}>
